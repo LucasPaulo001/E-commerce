@@ -1,8 +1,9 @@
 import express from "express";
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.send("Olá, E-commerce");
-});
+//Rotas
+import userRouter from "./userRoutes.mjs";
 
-export default router
+router.use("/api/users", userRouter);
+
+export default router;
