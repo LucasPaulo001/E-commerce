@@ -7,7 +7,7 @@ export const Register = () => {
   return (
     <div className={styles.container}>
         <h1>Cadastrar!</h1>
-        <p>Criar uma conta é só o começo de algo delicioso.</p>
+        <p>Os melhores produtos, na palma da sua mão.</p>
       <form>
         <div className={styles.localInput}>
           <InputDefault label={"Nome"} type={"text"} required={true} fullWidth={true} />
