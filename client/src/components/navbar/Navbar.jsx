@@ -1,24 +1,29 @@
 import IconButton from "@mui/material/IconButton";
 import { InputDefault } from "../input/Input";
 import styles from "./Navbar.module.css";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { IoMdSearch } from "react-icons/io";
 import { Link } from "react-router-dom";
-import Badge, { badgeClasses } from '@mui/material/Badge';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCartOutlined';
+import Badge, { badgeClasses } from "@mui/material/Badge";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCartOutlined";
+
+import { useSelector } from "react-redux";
+import MenuBotom from "../button/Menu";
 
 export const Navbar = () => {
-
   const CartBadge = styled(Badge)`
-  & .${badgeClasses.badge} {
-    top: -12px;
-    right: -6px;
-  }
-`;
+    & .${badgeClasses.badge} {
+      top: -12px;
+      right: -6px;
+    }
+  `;
+
+  const user = useSelector((state) => state.auth.user);
+  console.log(user);
+  const isLogged = useSelector((state) => state.auth.isLogged);
 
   return (
     <div className={styles.navbar}>
-      <div></div>
       <div className="localInputHome">
         <InputDefault
           type={"search"}
@@ -30,22 +35,28 @@ export const Navbar = () => {
           <IoMdSearch />
         </button>
       </div>
-      <button className={`${styles.btnDetail} ${styles.btnCar}`}>
+
+      <div className={`${styles.btnDetail} ${styles.btnCar}`}>
         <IconButton>
           <ShoppingCartIcon fontSize="small" />
           <CartBadge badgeContent={0} color="primary" overlap="circular" />
         </IconButton>
-      </button>
+      </div>
+
       <div>
-        <span>
-          <Link className="link" to={"/register"}>
-            Cadastrar
-          </Link>{" "}
-          |{" "}
-          <Link className="link" to={"/login"}>
-            Entrar
-          </Link>
-        </span>
+        {isLogged ? (
+          <MenuBotom />
+        ) : (
+          <span>
+            <Link className="link" to={"/register"}>
+              Cadastrar
+            </Link>{" "}
+            |{" "}
+            <Link className="link" to={"/login"}>
+              Entrar
+            </Link>
+          </span>
+        )}
       </div>
     </div>
   );
