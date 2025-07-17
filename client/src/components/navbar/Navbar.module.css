@@ -1,5 +1,5 @@
 .navbar{
-    background-color: #F57B09;
+    background: linear-gradient(-180deg, #f53d2d, #f63);
     color: white;
     height: 15vh;
     display: flex;
@@ -14,16 +14,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
+    width: 55px;
+    height: 50px;
+    border-radius: 100%;
     font-size: 2vw;
     border: 1px solid transparent;
     transition: .4s ease-in-out;
-    border-radius: 5px;
 }
 
 .btnDetail:hover{
-    color: white;
-    background-color: #F57B09;
+    background-color: rgb(240, 240, 240);
     border: 1px solid white;
 }
 

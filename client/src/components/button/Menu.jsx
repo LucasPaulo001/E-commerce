@@ -6,6 +6,7 @@ import { IoPersonSharp } from "react-icons/io5";
 
 import { useDispatch } from 'react-redux';
 import { logout } from '../../features/auth/authSlice';
+import { Link } from 'react-router-dom';
 
 export default function MenuBotom({nome}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -47,7 +48,7 @@ export default function MenuBotom({nome}) {
           },
         }}
       >
-        <MenuItem onClick={handleClose}>Perfil</MenuItem>
+        <MenuItem onClick={handleClose}><Link to={"/account/profile"}>Perfil</Link></MenuItem>
         <MenuItem onClick={handleClose}>Minha Conta</MenuItem>
         <MenuItem onClick={handleLogout}>Sair</MenuItem>
       </Menu>

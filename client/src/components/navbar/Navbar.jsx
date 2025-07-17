@@ -22,8 +22,15 @@ export const Navbar = () => {
   console.log(user);
   const isLogged = useSelector((state) => state.auth.isLogged);
 
+  // const { user, isLogged } = useSelector((state) => state.auth)
+
   return (
     <div className={styles.navbar}>
+      <div>
+        <Link style={{color: "white"}} to={"/"}>
+          <h1>Shoply</h1>
+        </Link>
+      </div>
       <div className="localInputHome">
         <InputDefault
           type={"search"}

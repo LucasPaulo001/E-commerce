@@ -88,7 +88,10 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.message;
+        const erros = action.payload?.errors;
+        state.error = Array.isArray(erros)
+          ? erros
+          : "Erro desconhecido."
       })
 
       //Cases de registro de usuário
