@@ -86,3 +86,33 @@ export const getCurrentUser = async (req, res) => {
     console.log(err);
   }
 };
+
+//Edição de dados do usuário
+export const editData = async (req, res) => {
+  const { name, password, phone, adress } = req.body;
+  const userId = req.user._id;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ errors: ["Usuário não encontrado!"] });
+    }
+
+    if (name) user.name = name;
+
+    if (password) {
+      const salts = await bcrypt.genSalt();
+      user.password = await bcrypt.hash(password, salts);
+    }
+
+    if (phone) user.phone = phone;
+
+    await user.save();
+
+    res.status(201).json({ msg: "Dados do usuário atualizados com sucesso!" });
+  } catch (err) {
+    res.status(500).json({ errors: ["Erro interno do servidor!"] });
+    console.log(err);
+  }
+};
