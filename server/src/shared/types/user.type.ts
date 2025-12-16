@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export type TAdress = {
     rua?: string,
     numero?: string,
@@ -9,7 +11,7 @@ export type TAdress = {
 }
 
 export type TUser = {
-    _id: string;
+    _id?: string;
     name: string;
     email: string;
     userName: string;
@@ -20,4 +22,11 @@ export type TUser = {
     adress: TAdress;
     active: boolean;
     createdAt: Date;
+}
+
+export type TCart = {
+    _id?: string;
+    user: Types.ObjectId;
+    products: Types.ObjectId[];
+    createdAt: string;
 }

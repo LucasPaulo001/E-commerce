@@ -3,6 +3,7 @@ import { UserRepository } from "../user.repository.js";
 import bcrypt from "bcrypt";
 import { generateToken } from "../../../settings/jwt/generateJwt.js"
 import { TUser } from "../../../shared/types/user.type.js";
+import cartModel from "../../Cart/cart.model.js";
 
 export const registerService = async (data: TCreateUser) => {
 
@@ -22,6 +23,11 @@ export const registerService = async (data: TCreateUser) => {
       phone: data.phone,
       sexo: data.sexo
     });
+
+    await cartModel.create({
+        user: newUser._id,
+        products: []
+    })
 
     return {
         msg: "Cadastro feito com sucesso.",

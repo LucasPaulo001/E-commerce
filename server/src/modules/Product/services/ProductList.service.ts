@@ -22,3 +22,34 @@ export const ListAllProductsService = async (page: number, limit: number) => {
        productsFormated
     }
 }
+
+
+export const ListByCategoryService = async (category: string) => {
+    const products = await ProductRepository.findByCategory(category);
+
+    const productsFormated = products.map((product) => ({
+        id: product._id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        images: product.images,
+        category: product.category,
+        stock: product.stock,
+        isActive: product.isActive,
+        createdAt: product.createdAt,
+    }))
+
+    return {
+       productsFormated
+    }
+}
+
+export const SearchProductService = async (query: string) => {
+    
+    const products = await ProductRepository.search(query);
+
+    return {
+        products
+    }
+
+}

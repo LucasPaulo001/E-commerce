@@ -41,5 +41,11 @@ const ProductSchema: Schema<TProduct> = new Schema(
   { timestamps: true }
 );
 
+ProductSchema.index({
+    name: "text",
+    description: "text",
+    category: "text"
+})
+
 // Exporta o model
 export const ProductModel = mongoose.model<TProduct>("Product", ProductSchema);
