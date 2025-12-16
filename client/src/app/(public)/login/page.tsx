@@ -19,6 +19,7 @@ import { Logo } from "../../../components/Logo/Logo";
 import Link from "next/link";
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
+import { useAuthContext } from "@//contexts/AuthContext";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Email inválido" }),
@@ -32,6 +33,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 export default function Login() {
   const [viewPass, setViewPass] = useState<boolean>(false);
 
+  const { login } = useAuthContext();
 
   const handleViewPass = () => {
     setViewPass(prev => !prev);
@@ -45,9 +47,8 @@ export default function Login() {
     },
   });
 
-  const onSubmit = (values: LoginFormValues) => {
-    console.log("Login values:", values);
-    // Aqui você chamaria sua API de login
+  const onSubmit = async (values: LoginFormValues) => {
+    await login(values.email, values.password);
   };
 
   return (
