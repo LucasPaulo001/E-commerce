@@ -17,7 +17,7 @@ export const ProfileData = ({user}: IProfileProps) => {
     return first + last;
   };
   return (
-    <div className="p-5 w-full mt-32">
+    <div className="p-5 w-full mt-12">
         <div className="flex justify-center items-center">
             <div className="flex justify-center items-center gap-3.5">
               <span className="text-3xl font-bold rounded-2xl border-2 p-3">

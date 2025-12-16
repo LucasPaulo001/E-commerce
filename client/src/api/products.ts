@@ -5,3 +5,9 @@ export const LoadProducts = async () => {
 
     return res.data.productsFormated;
 }
+
+export const serachProducts = async (query: string) => {
+    const res = await axiosInstance.get(`/api/product/list/search/product?q=${query}`);
+
+    return res.data;
+}

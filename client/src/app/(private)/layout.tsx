@@ -2,6 +2,8 @@
 
 import Navbar from "@/components/Navbar/Navbar";
 import PrivateGuard from "./privateRoutes";
+import Footer from "@/components/Footer/Footer";
+import NavbarMob from "@/components/Navbar/NavbarMob";
 
 export default function PrivateLayout({
   children,
@@ -11,7 +13,11 @@ export default function PrivateLayout({
   return (
     <PrivateGuard>
       <Navbar />
-        {children}
+      {children}
+      <Footer />
+      <div className="md:hidden">
+        <NavbarMob />
+      </div>
     </PrivateGuard>
   );
 }

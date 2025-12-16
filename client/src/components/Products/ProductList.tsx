@@ -2,15 +2,11 @@
 
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { fetchProducts } from "@/redux/slices/postSlices";
+import { fetchProducts } from "@/redux/slices/productSlices";
 import ProductCard from "./ProductCard";
 import { LoadingPage } from "../Loading/LoadingPage";
 import { groupProductsByCategory } from "@/helpers/groupProductsByCategory";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "../ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { FilterCategory } from "../FilterCategroy/FilterCategory";
 
 export default function ProductsList() {
@@ -50,7 +46,9 @@ export default function ProductsList() {
                     key={product.id}
                     className="
                     pl-4
-                    basis-full
+                    mx-7
+                    md:mx-1.5
+                    basis-1/2
                     sm:basis-1/2
                     lg:basis-1/3
                     xl:basis-1/4

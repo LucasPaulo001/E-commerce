@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar/Navbar";
 import NavbarMob from "@/components/Navbar/NavbarMob";
 import PublicGuard from "./publicRoutes";
+import Footer from "@/components/Footer/Footer";
 
 export default function PublicLayout({
   children,
@@ -13,7 +14,10 @@ export default function PublicLayout({
     <PublicGuard>
       <Navbar />
       {children}
-      <NavbarMob />
+      <Footer />
+      <div className="md:hidden">
+        <NavbarMob />
+      </div>
     </PublicGuard>
   );
 }

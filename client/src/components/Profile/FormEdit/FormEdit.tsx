@@ -116,7 +116,7 @@ export const FormData = ({ user }: IProfileProps) => {
 
           <h1 className="text-2xl mt-5">Endereço</h1>
           <hr />
-          <div className="grid gap-3.5 grid-cols-2">
+          <div className="flex w-full md:w-auto gap-3.5 flex-col">
             <FormField
               control={form.control}
               name="rua"

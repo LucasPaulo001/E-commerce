@@ -5,9 +5,25 @@ import { Logo } from "../Logo/Logo";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import PrivateGuard from "@/app/(private)/privateRoutes";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchProduct } from "@/redux/slices/productSearchSlice";
+import { AppDispatch } from "@/redux/store";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+
+  const [value, setValue] = useState<string | "">("");
+  const router = useRouter();
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleSearch = async () => {
+    dispatch(searchProduct(value));
+    router.replace("/search")
+    
+  }
+
   return (
     
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-sm
@@ -18,8 +34,13 @@ export default function Navbar() {
           </Link>
       </div>
       <div className="w-full flex gap-1.5">
-        <Input className="w-full" placeholder="Buscar no E-Shopp..." />
-        <Button variant={"outline"} className="cursor-pointer">
+        <Input 
+          value={value}
+          className="w-full" 
+          placeholder="Buscar no E-Shopp..." 
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <Button onClick={() => handleSearch()} variant={"outline"} className="cursor-pointer">
           <Search />
         </Button>
       </div>
