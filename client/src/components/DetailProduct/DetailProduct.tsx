@@ -9,6 +9,7 @@ import { ShoppingCart } from "lucide-react";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { AddToCart } from "@/api/products";
 import { toast } from "sonner";
+import { Comment } from "../Comment/Comment";
 
 interface IProduct {
   product: Product;
@@ -21,11 +22,11 @@ export const DetailProduct = ({ product }: IProduct) => {
 
   const handleAddToCart = async (productId: string) => {
     await AddToCart(token, productId);
-    toast.success("Produto adicionado ao carrinho.")
-  }
+    toast.success("Produto adicionado ao carrinho.");
+  };
 
   return (
-    <div className="w-full flex mt-24 h-screen">
+    <div className="w-full flex flex-col mt-24">
       <div className="flex md:flex-row flex-col md:items-start items-center justify-around w-full">
         <div>
           <Carousel
@@ -35,9 +36,7 @@ export const DetailProduct = ({ product }: IProduct) => {
           >
             <CarouselContent>
               {product.images.map((img, index) => (
-                <CarouselItem 
-                  className="flex justify-center"
-                key={index}>
+                <CarouselItem className="flex justify-center" key={index}>
                   <Image
                     src={img}
                     width={350}
@@ -66,7 +65,10 @@ export const DetailProduct = ({ product }: IProduct) => {
               <Button className="bg-blue-500 hover:bg-blue-700 cursor-pointer">
                 Comprar
               </Button>
-              <Button onClick={() => handleAddToCart(product.id)} className="bg-blue-500 hover:bg-blue-700 cursor-pointer">
+              <Button
+                onClick={() => handleAddToCart(product.id)}
+                className="bg-blue-500 hover:bg-blue-700 cursor-pointer"
+              >
                 <ShoppingCart />
               </Button>
             </div>
@@ -88,6 +90,7 @@ export const DetailProduct = ({ product }: IProduct) => {
           </div>
         </div>
       </div>
+      <Comment product={product} />
     </div>
   );
 };

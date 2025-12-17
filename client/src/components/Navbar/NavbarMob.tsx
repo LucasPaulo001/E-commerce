@@ -14,7 +14,9 @@ export default function NavbarMob() {
             <Home />
         </Link>
         <span className="border-2 bg-white p-3 h-12.5 mb-4 rounded-full">
-            <ShoppingCart />
+            <Link href={"/cart"}>
+              <ShoppingCart />
+            </Link>
         </span>
         <Link href={"/profile"}>
             <User />
