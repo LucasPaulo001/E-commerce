@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const FilterCategory = () => {
   const categories = [
@@ -23,22 +24,23 @@ export const FilterCategory = () => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
       {categories.map((item) => (
-        <div
-          key={item.title}
-          className="flex flex-col items-center justify-center gap-3 border rounded-md p-5 hover:border-blue-500 hover:shadow-sm transition cursor-pointer"
-        >
-          <div className="relative h-24 w-full">
-            <Image
-              src={item.img}
-              alt={item.title}
-              fill
-              sizes="200px"
-              className="object-contain"
-            />
+        <Link key={item.title} href={`/category/${item.title}`}>
+          <div
+            
+            className="flex flex-col items-center justify-center gap-3 border rounded-md p-5 hover:border-blue-500 hover:shadow-sm transition cursor-pointer"
+          >
+            <div className="relative h-24 w-full">
+              <Image
+                src={item.img}
+                alt={item.title}
+                fill
+                sizes="200px"
+                className="object-contain"
+              />
+            </div>
+            <h2 className="text-sm font-medium">{item.title}</h2>
           </div>
-
-          <h2 className="text-sm font-medium">{item.title}</h2>
-        </div>
+        </Link>
       ))}
     </div>
   );

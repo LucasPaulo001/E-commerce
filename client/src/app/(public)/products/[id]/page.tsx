@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { LoadProduct } from "@/api/products";
 import { DetailProduct } from "@/components/DetailProduct/DetailProduct";
+import { LoadingPage } from "@/components/Loading/LoadingPage";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -22,7 +23,7 @@ export default function ProductPage() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <div>Carregando...</div>;
+  if (loading) return <LoadingPage />;
   if (error) return <div>{error}</div>;
   if (!product) return <div>Produto não encontrado.</div>;
 

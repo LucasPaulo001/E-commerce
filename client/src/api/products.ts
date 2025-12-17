@@ -18,6 +18,12 @@ export const LoadProduct = async (productId: string) => {
     return res.data.productFormated;
 }
 
+export const LoadByCategory = async (category: string) => {
+    const res = await axiosInstance.get(`/api/product/list-category?category=${category}`);
+
+    return res.data.productsFormated;
+}
+
 export const ListCart = async (token: string | null) => {
     const res = await axiosInstance.get(`/api/cart/products`,{
         headers: {
