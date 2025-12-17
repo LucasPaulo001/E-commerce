@@ -18,7 +18,7 @@ export const searchProduct = createAsyncThunk(
     "products/searchProducts",
     async (category: string) => {
         const res = await axiosInstance.get(`/api/product/list/search/product?q=${category}`);
-        return res.data.products;
+        return res.data.productsFormated;
     }
 )
 

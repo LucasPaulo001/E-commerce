@@ -8,11 +8,12 @@ import { LoadingPage } from "../Loading/LoadingPage";
 import { groupProductsByCategory } from "@/helpers/groupProductsByCategory";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { FilterCategory } from "../FilterCategroy/FilterCategory";
+import Link from "next/link";
 
 export default function ProductsList() {
   const dispatch = useAppDispatch();
   const {
-    items: products,
+    items,
     loading,
     error,
   } = useAppSelector((state) => state.products);
@@ -24,7 +25,7 @@ export default function ProductsList() {
   if (loading) return <LoadingPage />;
   if (error) return <p>Erro: {error}</p>;
 
-  const productsByCategory = groupProductsByCategory(products);
+  const productsByCategory = groupProductsByCategory(items);
 
   return (
     <div className="flex flex-col mt-10 gap-10">
@@ -54,7 +55,9 @@ export default function ProductsList() {
                     xl:basis-1/4
                   "
                   >
-                    <ProductCard product={product} />
+                    <Link href={`/products/${product.id}`}>
+                      <ProductCard product={product} />
+                    </Link>
                   </CarouselItem>
                 ))}
               </CarouselContent>

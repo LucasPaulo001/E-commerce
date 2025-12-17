@@ -45,7 +45,9 @@ export default function Navbar() {
         </Button>
       </div>
       <div className="hidden bottom-0 md:flex justify-between w-60 gap-3.5">
-        <ShoppingCart />
+        <Link href={"/cart"}>
+          <ShoppingCart />
+        </Link>
         <Link href={"/profile"}>
           <User />
         </Link>

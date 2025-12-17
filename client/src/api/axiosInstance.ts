@@ -12,9 +12,6 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    console.log("Interceptor rodou");
-    console.log("Token:", localStorage.getItem("token"));
-    console.log("Headers antes:", config.headers);
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
 

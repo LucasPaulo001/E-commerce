@@ -14,9 +14,11 @@ export default function Search() {
 
       {loading && <LoadingPage />}
       {error && <p>{error}</p>}
-      {product.length === 0 && !loading && <p>Nenhum produto encontrado</p>}
+      {!loading && product.length === 0 && !error && (
+        <p>Nenhum produto encontrado</p>
+      )}
 
-      {product.length > 0 && <SearchedProducts />}
+      {!loading && product.length > 0 && <SearchedProducts />}
     </main>
   );
 }
