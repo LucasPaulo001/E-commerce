@@ -21,7 +21,7 @@ export function BannerCarousel() {
   );
 
   return (
-    <Carousel plugins={[autoplay.current]} className="w-full">
+    <Carousel plugins={[autoplay.current]} className="w-full my-12">
       <CarouselContent>
         <CarouselItem className="relative h-[400px]">
           <Image

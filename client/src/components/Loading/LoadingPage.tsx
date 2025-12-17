@@ -1,10 +1,11 @@
 "use client"
-import { Spinner } from "@/components/ui/spinner"
+
+import { LoadingSpinner } from "./SpinnerLoading"
 
 export function LoadingPage() {
   return (
     <div className="h-screen flex flex-col justify-center items-center">
-        <Spinner className="size-8 text-blue-500" />
+        <LoadingSpinner />
         Aguarde...
     </div>
   )
