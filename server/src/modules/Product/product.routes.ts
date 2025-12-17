@@ -3,7 +3,6 @@ const ProductRouter = express.Router();
 
 //middlewares
 
-import { authGuard } from "../../middlewares/authGuard.js";
 import { ListAllProductsController, ListProductsByCategoryController, ProductDetailController, SearchProductController } from "./product.controller.js";
 
 //Rotas
