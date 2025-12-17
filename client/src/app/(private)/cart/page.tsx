@@ -56,7 +56,7 @@ export default function Perfil() {
   return (
     <PrivateGuard>
       <div className="mt-28">
-        <div className="text-center gap-3.5 flex items-center justify-center gap-2.5 my-3 flex-col md:flex-row">
+        <div className="text-center gap-3.5 flex items-center justify-center my-3 flex-col md:flex-row">
           <h1 className="font-bold">{list.length}</h1>
           <span>Produto(s) no carrinho</span>
         </div>
@@ -82,7 +82,7 @@ export default function Perfil() {
                   <p>{l.description}</p>
                 </div>
               </div>
-              <div className="flex flex-row justify-center items-center gap-3.5">
+              <div className="flex flex-col md:flex-row justify-center items-center gap-3.5">
                 <span className="font-bold">R${l.price}</span>
 
                 <Button className="bg-blue-500 hover:bg-blue-700 cursor-pointer">
