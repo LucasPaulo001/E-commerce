@@ -28,9 +28,9 @@ export const ListProductsByCategoryController = async (
   res: Response
 ) => {
   try {
-    const { category } = req.body;
+    const { category } = req.query;
 
-    const result = await ListByCategoryService(category);
+    const result = await ListByCategoryService(String(category));
 
     res.status(200).json(result);
 
