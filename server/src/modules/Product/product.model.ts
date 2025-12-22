@@ -38,7 +38,7 @@ const ProductSchema: Schema<TProduct> = new Schema(
         default: true 
     },
   },
-  { timestamps: true }
+  { timestamps: true,  }
 );
 
 ProductSchema.index({

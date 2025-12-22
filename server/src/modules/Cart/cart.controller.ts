@@ -32,7 +32,9 @@ export const AddProductToCartController = async (
 
     const productId = req.params.id;
 
-    const result = await  AddProductToCartService(userId, productId);
+    const {quantity} = req.body;
+
+    const result = await  AddProductToCartService(userId, productId, quantity);
 
     res.status(200).json(result);
   } catch (err: any) {

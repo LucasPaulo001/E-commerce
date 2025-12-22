@@ -3,7 +3,10 @@ import { ProductRepository } from "../../Product/product.repository.js";
 import { UserRepository } from "../../User/user.repository.js";
 import { CartRepository } from "../cart.repository.js";
 
-export const AddProductToCartService = async (userId: string, productId: string) => {
+export const AddProductToCartService = async (userId: string, productId: string, quantity: number) => {
+
+  if(quantity < 1) throw new Error("Quantidade inválida");
+  
   const product = await ProductRepository.findById(productId);
 
   const user = await UserRepository.findById(userId);
@@ -16,7 +19,7 @@ export const AddProductToCartService = async (userId: string, productId: string)
 
   if(!cart) throw new Error("Carrinho não encontrado");
 
-  const newProductToCart = await CartRepository.add(productId, cart._id);
+  const newProductToCart = await CartRepository.add(productId, cart._id, quantity);
 
   return {
     msg: "Produto adicionado ao carrinho.",

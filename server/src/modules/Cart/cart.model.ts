@@ -9,10 +9,17 @@ const CartSchema = new mongoose.Schema<TCart>({
     },
 
     products: [{
-        type: Schema.Types.ObjectId,
-        ref: "Product",
-        required: true
-    }],
+        product: {
+            type: Schema.Types.ObjectId,
+            ref: "Product",
+            required: true
+        },
+        quantity: {
+            type: Number,
+            min: 1,
+            required: true,
+        }
+    }]
 
 }, { timestamps: true });
 
