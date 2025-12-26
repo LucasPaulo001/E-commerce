@@ -14,6 +14,7 @@ export type TUpdateUser = {
     email?: string;
     sexo?: string;
     adress?: TAdress;
+    role?: "admin" | "seller" | "client" | undefined;
     userName?: string;
     password?: string;
     phone?: string;

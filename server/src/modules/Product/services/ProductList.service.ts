@@ -1,4 +1,4 @@
-import { ProductModel } from "../product.model.js";
+import productModel from "../product.model.js";
 import { ProductRepository } from "../product.repository.js";
 
 export const ListAllProductsService = async (page: number, limit: number) => {

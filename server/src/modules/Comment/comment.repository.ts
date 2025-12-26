@@ -7,6 +7,6 @@ export const CommentRepository = {
     },
 
     async listByProduct(productId: string){
-        return commentModel.find({ product: productId })
+        return commentModel.find({ product: productId }).populate("user");
     }
 }

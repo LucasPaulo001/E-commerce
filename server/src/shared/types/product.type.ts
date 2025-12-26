@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { TUser } from "./user.type.js";
 
 export type TProduct = {
@@ -9,6 +10,7 @@ export type TProduct = {
   category: string;
   stock: number;
   variants: variant[];
+  seller: Types.ObjectId;
   isActive?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
