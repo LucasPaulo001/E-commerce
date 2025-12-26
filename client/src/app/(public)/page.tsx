@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <div className="mt-40">
       <span className="mb-48 p-4 text-[20px] md:text-2xl font-extrabold">
-        Seja bem vindo(a), <span className="text-blue-500">{user?.name}</span>
+        Seja bem vindo(a) <span className="text-blue-500">{user?.name}</span>
       </span>
       <hr />
       <BannerCarousel />
