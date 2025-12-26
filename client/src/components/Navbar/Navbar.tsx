@@ -29,7 +29,7 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-sm
           transition-all flex md:grid gap-3.5 md:justify-items-center flex-row md:grid-cols-3 items-center duration-300 px-5 py-6">
       <div className="w-30">
-          <Link href={"/"}>
+          <Link href={"/"} suppressHydrationWarning>
             <Logo />
           </Link>
       </div>

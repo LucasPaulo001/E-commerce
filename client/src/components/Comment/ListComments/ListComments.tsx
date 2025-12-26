@@ -19,7 +19,6 @@ export const ListComments = ({ product }: ICommentProps) => {
     const fetchComments = async () => {
       try {
         const comments = await ListCommentsAPI(product.id);
-
         setComments(comments.commentsFormated);
       } finally {
         setLoading(false);
@@ -32,7 +31,7 @@ export const ListComments = ({ product }: ICommentProps) => {
   if(comments.length === 0) return <span className="my-5 text-2xl">Nenhum comentário</span>
 
   return (
-    <div className="mt-16 p-5  w-full">
+    <div className="mt-16 p-5 w-full">
       {loading ? (
         <div className="flex items-center justify-center">
           <Spinner className="size-8 text-blue-600" />
@@ -44,7 +43,7 @@ export const ListComments = ({ product }: ICommentProps) => {
               <div key={comment.id}>
                 <div className="flex items-center gap-3">
                   <User className="rounded-full size-10 border-2" />
-                  <div className="flex gap-0.5 flex-col">
+                  <div className="flex w-full gap-0.5 flex-col">
                     <strong>{comment.user.name}</strong>
                     {comment.comment}
                   </div>

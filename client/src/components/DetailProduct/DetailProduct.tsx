@@ -48,7 +48,7 @@ export const DetailProduct = ({ product }: IProduct) => {
             </CarouselContent>
           </Carousel>
         </div>
-        <div className="flex border-l-2 px-5 border-blue-100 gap-2.5 flex-col">
+        <div className="flex border-2 p-5 rounded-2xl border-blue-100 gap-2.5 flex-col">
           <div className="flex flex-col gap-2">
             <h1 className="text-2xl md:text-4xl font-extrabold">
               {product.name}

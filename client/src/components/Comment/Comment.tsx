@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { Textarea } from "../ui/textarea";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Separator } from "@radix-ui/react-separator";
 
 interface IProduct {
   product: Product;
@@ -40,10 +41,10 @@ export const Comment = ({ product }: IProduct) => {
   };
 
   return (
-    <div className="mt-16 flex flex-col justify-center gap-7 w-full">
-      <hr />
+    <div className="mt-16 flex items-center flex-col justify-center gap-7 w-full">
+      <Separator className="bg-blue-200 h-[2px] w-full" />
       <h1 className="text-3xl">Avaliações</h1>
-      <form onSubmit={handleCreateComment} className="w-full">
+      <form onSubmit={handleCreateComment} className="w-90">
         <div className="flex w-full items-center justify-center flex-col gap-3.5">
           <Textarea
             placeholder={`O que achou de ${product.name}`}
@@ -60,7 +61,7 @@ export const Comment = ({ product }: IProduct) => {
               min={0}
               id="avaliation"
               max={10}
-              className="w-full md:w-80"
+              className="w-full"
               value={avaliation}
               onChange={(e) => setAvaliation(Number(e.target.value))}
             />
@@ -71,8 +72,8 @@ export const Comment = ({ product }: IProduct) => {
         </div>
       </form>
 
-      <div>
-        <hr />
+      <div className="w-full">
+        <Separator className="h-[2px] w-full bg-blue-200" />
         <ListComments product={product} />
       </div>
     </div>
