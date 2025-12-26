@@ -1,7 +1,16 @@
 import mongoose, { Schema } from "mongoose";
+import { TUser } from "../../shared/types/user.type.js";
 
-const UserSchema = new Schema({
-  name: String,
+const UserSchema = new Schema<TUser>({
+  name: {
+    type: String,
+    required: true
+  },
+
+  userName: {
+    type: String,
+    required: true
+  },
 
   email: {
     type: String,
@@ -12,8 +21,13 @@ const UserSchema = new Schema({
 
   role: {
     type: String,
-    enum: ["cliente", "admin"],
-    default: "cliente",
+    enum: ["admin", "seller", "client"],
+    default: "client",
+  },
+
+  sexo: {
+    type: String,
+    enum: ["masculino", "feminino", "outro"],
   },
 
   phone: {
@@ -38,6 +52,6 @@ const UserSchema = new Schema({
   }
 }, { timestamps: true });
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model<TUser>("User", UserSchema);
 
 
