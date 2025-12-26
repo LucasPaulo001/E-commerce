@@ -5,10 +5,10 @@ export const ProductRepository = {
     const skip = (page - 1) * limit;
 
     const [products, total] = await Promise.all([
-      ProductModel.find().sort({ createdAt: -1 }).skip(skip).limit(limit),
-
+      ProductModel.find().sort({ createdAt: -1 }).skip(skip).limit(limit).lean(),
       ProductModel.countDocuments(),
     ]);
+
     return {
       products,
       total,
@@ -23,21 +23,18 @@ export const ProductRepository = {
   },
 
 async search(query: string) {
-  // 1. Limpa e prepara a query
-  const safeQuery = query.trim();
-  
-  // 2. Usamos o operador $regex de forma explícita e simplificada
-  // Adicionamos o 'collation' para garantir que ignore acentos e maiúsculas
-  return await ProductModel.find({
-    $or: [
-      { name: { $regex: safeQuery, $options: 'i' } },
-      { description: { $regex: safeQuery, $options: 'i' } },
-      { category: { $regex: safeQuery, $options: 'i' } }
-    ]
-  })
-  .collation({ locale: 'pt', strength: 1 }) 
-  .exec(); // O .exec() garante o retorno da Promise
-},
+    const safeQuery = query.trim();
+    return await ProductModel.find({
+      $or: [
+        { name: { $regex: safeQuery, $options: 'i' } },
+        { description: { $regex: safeQuery, $options: 'i' } },
+        { category: { $regex: safeQuery, $options: 'i' } }
+      ]
+    })
+    .collation({ locale: 'pt', strength: 1 }) 
+    .lean() 
+    .exec();
+  },
 
   async findById(id: string) {
     return ProductModel.findById(id);

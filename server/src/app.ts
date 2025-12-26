@@ -15,9 +15,12 @@ app.use(router);
 
 //database
 import { connection } from "./settings/dbConnection.js";
-connection();
 
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+connection().then(() => {
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => {
+    console.log(`Banco conectado e Servidor rodando na porta ${PORT}`);
+  });
+}).catch(err => {
+  console.error("Falha ao iniciar servidor:", err);
 });
