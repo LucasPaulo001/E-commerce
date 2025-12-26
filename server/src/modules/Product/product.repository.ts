@@ -20,10 +20,13 @@ export const ProductRepository = {
   },
 
   async findByCategory(category: string) {
-    return productModel.find({ category: category });
+    return productModel.find({
+      category: { $regex: `^${category}$`, $options: "i" },
+      isActive: true
+    });
   },
 
-async search(query: string) {
+  async search(query: string) {
     const safeQuery = query.trim();
     return await productModel.find({
       $or: [
@@ -32,16 +35,16 @@ async search(query: string) {
         { category: { $regex: safeQuery, $options: 'i' } }
       ]
     })
-    .collation({ locale: 'pt', strength: 1 }) 
-    .lean() 
-    .exec();
+      .collation({ locale: 'pt', strength: 1 })
+      .lean()
+      .exec();
   },
 
   async findById(id: string) {
     return productModel.findById(id);
   },
 
-  async create(data: DataCreateProduct){
+  async create(data: DataCreateProduct) {
     return await productModel.create(data);
   }
 };

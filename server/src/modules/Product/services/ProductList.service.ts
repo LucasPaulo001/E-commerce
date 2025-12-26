@@ -21,16 +21,21 @@ export const ListAllProductsService = async (page: number, limit: number) => {
 };
 
 export const ListByCategoryService = async (category: string) => {
-  const products = await ProductRepository.findByCategory(category);
+
+  const normalizedCategory = category.trim().toLowerCase().replace(/[^\w\s-]/g, "");;
+
+  const products = await ProductRepository.findByCategory(normalizedCategory);
+
+  console.log(normalizedCategory)
+  console.log(products)
 
   const productsFormated = products.map((product) => ({
     id: product._id,
     name: product.name,
     description: product.description,
-    price: product.price,
+    variants: product.variants,
     images: product.images,
     category: product.category,
-    stock: product.stock,
     isActive: product.isActive,
     createdAt: product.createdAt,
   }));
