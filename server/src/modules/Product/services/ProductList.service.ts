@@ -1,3 +1,4 @@
+import { ProductModel } from "../product.model.js";
 import { ProductRepository } from "../product.repository.js";
 
 export const ListAllProductsService = async (page: number, limit: number) => {
@@ -7,10 +8,9 @@ export const ListAllProductsService = async (page: number, limit: number) => {
     id: product._id,
     name: product.name,
     description: product.description,
-    price: product.price,
     images: product.images,
+    variants: product.variants,
     category: product.category,
-    stock: product.stock,
     isActive: product.isActive,
     createdAt: product.createdAt,
   }));
@@ -42,6 +42,9 @@ export const ListByCategoryService = async (category: string) => {
 
 export const SearchProductService = async (query: string) => {
   const products = await ProductRepository.search(query);
+
+  console.log(query)
+
 
   const productsFormated = products.map((product) => ({
     id: product._id,

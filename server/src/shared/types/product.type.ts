@@ -8,10 +8,19 @@ export type TProduct = {
   images: string[];
   category: string;
   stock: number;
+  variants: variant[];
   isActive?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+export type variant = {
+  color: string;
+  size: string;
+  stock: number;
+  price: number;
+  sku: string;
+}
 
 export type TCartItemPopulated = {
   product: TProduct;

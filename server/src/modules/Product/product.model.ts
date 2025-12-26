@@ -1,6 +1,14 @@
 import mongoose, { Schema } from "mongoose";
 import { TProduct } from "../../shared/types/product.type.js";
 
+const VariantSchema = new Schema({
+  color: { type: String, required: false },
+  size: { type: String, required: false }, 
+  stock: { type: Number, required: true, default: 0 },
+  price: { type: Number, required: false }, 
+  sku: { type: String, unique: true } 
+});
+
 const ProductSchema: Schema<TProduct> = new Schema(
   {
     name: { 
@@ -14,10 +22,7 @@ const ProductSchema: Schema<TProduct> = new Schema(
         required: true 
     },
 
-    price: { 
-        type: Number, 
-        required: true 
-    },
+    variants: [VariantSchema],
 
     images: [{ 
         type: String 
@@ -28,11 +33,6 @@ const ProductSchema: Schema<TProduct> = new Schema(
         required: true 
     },
 
-    stock: { 
-        type: Number, 
-        default: 0 
-    },
-
     isActive: { 
         type: Boolean, 
         default: true 
@@ -40,12 +40,6 @@ const ProductSchema: Schema<TProduct> = new Schema(
   },
   { timestamps: true,  }
 );
-
-ProductSchema.index({
-    name: "text",
-    description: "text",
-    category: "text"
-})
 
 // Exporta o model
 export const ProductModel = mongoose.model<TProduct>("Product", ProductSchema);
