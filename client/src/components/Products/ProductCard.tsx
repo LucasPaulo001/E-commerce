@@ -14,7 +14,7 @@ export default function ProductCard({ product }: { product: Product }) {
       </div>
       <h3 className="font-bold text-lg">{product.name}</h3>
       <p className="text-gray-600">{product.description.slice(0, 35)}...</p>
-      <p className="font-semibold mt-1">R$ {product.price.toFixed(2)}</p>
+      <p className="font-semibold mt-1">R$ </p>
     </div>
   );
 }
